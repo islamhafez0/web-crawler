@@ -1,0 +1,2 @@
+to run the crawler: python -m scrapy crawl "crawlername(identifier)"
+to export the crawled data into json format: python -m scrapy crawl "crawlername(identifier)" -o output.json
