@@ -19,5 +19,6 @@ class CrawlingSpider(CrawlSpider):
       "availability": response.css(".availability::text").getall()[1].strip(),  
       "category": response.css("ul.breadcrumb li a::text").getall()[-1].strip(),
       "description": response.css("#product_description + p::text").get(),
-      "img_url": response.urljoin(response.css(".item.active img::attr(src)").get())
+      "img_url": response.urljoin(response.css(".item.active img::attr(src)").get()),
+      "rating": response.css("p.star-rating::attr(class)").re_first("star-rating (.+)"),
     }
