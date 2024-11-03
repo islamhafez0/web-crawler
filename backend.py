@@ -1,10 +1,11 @@
 from flask import Flask, jsonify, request, abort
+from flask_cors import CORS
 import json
 import uuid
 
 
 app = Flask(__name__)
-
+CORS(app)
 with open("output.json", 'r', encoding='utf-8') as file:
   books = json.load(file)
 
