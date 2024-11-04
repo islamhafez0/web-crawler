@@ -2,13 +2,20 @@ from flask import Flask, jsonify, request, abort
 from flask_cors import CORS
 import json
 import uuid
+import os
 
 
 app = Flask(__name__)
 CORS(app)
-with open("output.json", 'r', encoding='utf-8') as file:
-  books = json.load(file)
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+json_file_path = os.path.join(current_dir, 'output.json')
+try:
+  with open(json_file_path, 'r', encoding='utf-8') as file:
+    books = json.load(file)
+except FileNotFoundError:
+      print("output.json not found. Please ensure it exists in the api directory.")
+      books = []
 for book in books:
   book['id'] = str(uuid.uuid4())
 
